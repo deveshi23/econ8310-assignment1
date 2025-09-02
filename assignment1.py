@@ -21,10 +21,10 @@ trips = trips.resample('h').sum()
 
 # Defining the model
 model = ExponentialSmoothing(trips, trend='add', 
-        seasonal='add', seasonal_periods=24*7, use_boxcox=True)
+        seasonal='add', seasonal_periods=24)
 
 # Fitted model
-modelFit = model.fit()
+modelFit = model.fit(optimized=True)
 
 # Saving the fitted model
 with open('taxi_model.pkl', 'wb') as f:
