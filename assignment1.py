@@ -35,7 +35,19 @@ with open('taxi_model.pkl', 'rb') as f:
     fitModel = pickle.load(f)
 
 # Loading the test data
-test = pd.read_csv('assignment_data_test.csv')
+test = pd.read_csv('assignment_data_test.csv'), parse_dates=['Timestamps']
+
+
+forecast = modelFit.forecast(len(test))
+
+results = pd.DataFrame({"TimeStamp": test['Timestamp'],
+                            "Forecasted_trips": forecast.values})
+
+results.to_csv("forecast_results", index=False)
+
+
+
+'''
 test['Timestamp'] = pd.to_datetime(test['Timestamp'])
 
 # No. of periods in the test set
@@ -50,4 +62,4 @@ results = pd.DataFrame({"TimeStamp": test['Timestamp'],
 
 # Saving the results
 results.to_csv("forecast_results", index=False)
-        
+''' 
