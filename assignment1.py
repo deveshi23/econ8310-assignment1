@@ -20,7 +20,8 @@ trips = data.set_index('Timestamp')['trips']
 trips = trips.resample('h').sum()
 
 # Defining the model
-model = ExponentialSmoothing(trips, trend='add', seasonal='add', seasonal_periods=24*7, use_boxcox=True)
+model = ExponentialSmoothing(trips, trend='add', 
+        seasonal='add', seasonal_periods=24*7, use_boxcox=True)
 
 # Fitted model
 fitModel = model.fit()
