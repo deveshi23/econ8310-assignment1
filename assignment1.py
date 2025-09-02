@@ -24,11 +24,11 @@ model = ExponentialSmoothing(trips, trend='add',
         seasonal='add', seasonal_periods=24*7, use_boxcox=True)
 
 # Fitted model
-fitModel = model.fit()
+modelFit = model.fit()
 
 # Saving the fitted model
 with open('taxi_model.pkl', 'wb') as f:
-    pickle.dump(fitModel, f)
+    pickle.dump(modelFit, f)
 
 # Reloading the model to simulate future use
 with open('taxi_model.pkl', 'rb') as f:
