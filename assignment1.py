@@ -15,7 +15,7 @@ y_train = df['trips']
 # Defining forecasting model function
 def model(series):
     # Assuming that weekly seasonality is 168 hours
-    return ExponentialSmoothing(series, trend='add', seasonal='add', seasonal_periods=168)
+    return ExponentialSmoothing(series, trend='add', seasonal='mul', seasonal_periods=168)
 
 # Fitting the model
 modelFit = model(y_train).fit()
