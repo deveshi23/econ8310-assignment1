@@ -12,19 +12,14 @@ df = df.asfreq('h')
 # Dependent variable to forecast
 y_train = df['trips']
 
-# Defining forecasting model function
-def model(series):
-    # Assuming that weekly seasonality is 168 hours
-    return ExponentialSmoothing(series, trend='add', seasonal='mul', seasonal_periods=168)
+# Defining forecasting model 
+model = ExponentialSmoothing(y_train, trend='add', seasonal='mul', seasonal_periods=168)
 
 # Fitting the model
-modelFit = model(y_train).fit()
+modelFit = model.fit()
 
 # Predicting for the next 744 hours 
 pred = modelFit.forecast(steps=744)
-
-# Converting the predictions to vectory (Numpy array)
-pred_vector = pred.values
 
 # Saving the fitted model for later use
 with open("modelFit.pkl", "wb") as f:
